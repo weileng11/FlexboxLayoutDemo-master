@@ -1,29 +1,15 @@
 package com.example.qyhl2.flexboxlayoutdemo;
 
-import android.graphics.drawable.Drawable;
-import android.support.v4.content.res.ResourcesCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.google.android.flexbox.AlignItems;
-import com.google.android.flexbox.FlexDirection;
-import com.google.android.flexbox.FlexWrap;
-import com.google.android.flexbox.FlexboxLayoutManager;
-import com.google.android.flexbox.JustifyContent;
+import com.google.android.flexbox.*;
 import com.zhy.adapter.recyclerview.CommonAdapter;
-import com.zhy.adapter.recyclerview.MultiItemTypeAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class RecyclerViewActivity extends AppCompatActivity {
 
@@ -114,42 +100,42 @@ public class RecyclerViewActivity extends AppCompatActivity {
         layoutManager.setJustifyContent(JustifyContent.FLEX_START);
         mRecyclerView.setLayoutManager(layoutManager);
 
-//        mRecyclerView.setAdapter(madapter= new CommonAdapter<String>(this, R.layout.flexbox_item, mDatas2)
-//        {
-//            @Override
-//            protected void convert(ViewHolder holder, String s, int position) {
-//
-//                TextView te = holder.getView(R.id.imageview);
-//                te.setText(s);
-//                ViewGroup.LayoutParams lp = te.getLayoutParams();
-//                if (lp instanceof FlexboxLayoutManager.LayoutParams) {
-//                    FlexboxLayoutManager.LayoutParams flexboxLp = (FlexboxLayoutManager.LayoutParams) lp;
-//                    flexboxLp.setFlexGrow(1.0f);
-//                }
-//            }
-//        });
-
-        mRecyclerView.setAdapter(new CommonAdapter<Integer>(this, R.layout.flexbox_item, mDatas)
+        mRecyclerView.setAdapter(madapter= new CommonAdapter<String>(this, R.layout.flexbox_item2, mDatas2)
         {
             @Override
-            protected void convert(ViewHolder holder, Integer s, int position) {
-                int pos = position % mDatas.size();
-                Drawable drawable = ResourcesCompat.getDrawable(mContext.getResources(),
-                        mDatas.get(pos), null);
-                ImageView mImageView = (ImageView)holder.getView(R.id.imageview);
-                mImageView.setImageDrawable(drawable);
+            protected void convert(ViewHolder holder, String s, int position) {
 
-                ViewGroup.LayoutParams lp = mImageView.getLayoutParams();
+                TextView te = holder.getView(R.id.imageview);
+                te.setText(s);
+                ViewGroup.LayoutParams lp = te.getLayoutParams();
                 if (lp instanceof FlexboxLayoutManager.LayoutParams) {
                     FlexboxLayoutManager.LayoutParams flexboxLp = (FlexboxLayoutManager.LayoutParams) lp;
-                    Random random = new Random();
-                    //随机宽度
-                    int width  =random.nextInt(300)+200;
-                    flexboxLp.width=width;
                     flexboxLp.setFlexGrow(1.0f);
                 }
             }
         });
+
+        //mRecyclerView.setAdapter(new CommonAdapter<Integer>(this, R.layout.flexbox_item, mDatas)
+        //{
+        //    @Override
+        //    protected void convert(ViewHolder holder, Integer s, int position) {
+        //        int pos = position % mDatas.size();
+        //        Drawable drawable = ResourcesCompat.getDrawable(mContext.getResources(),
+        //                mDatas.get(pos), null);
+        //        ImageView mImageView = (ImageView)holder.getView(R.id.imageview);
+        //        mImageView.setImageDrawable(drawable);
+        //
+        //        ViewGroup.LayoutParams lp = mImageView.getLayoutParams();
+        //        if (lp instanceof FlexboxLayoutManager.LayoutParams) {
+        //            FlexboxLayoutManager.LayoutParams flexboxLp = (FlexboxLayoutManager.LayoutParams) lp;
+        //            Random random = new Random();
+        //            //随机宽度
+        //            int width  =random.nextInt(300)+200;
+        //            flexboxLp.width=width;
+        //            flexboxLp.setFlexGrow(1.0f);
+        //        }
+        //    }
+        //});
 
 
 //        madapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
